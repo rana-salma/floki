@@ -18,6 +18,7 @@ defmodule Floki.Mixfile do
       dialyzer: [
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
       ],
+      elixirc_paths: elixirc_paths(Mix.env()),
       source_url: "https://github.com/philss/floki",
       docs: [extras: ["README.md"], main: "Floki", assets: "assets"]
     ]
@@ -107,4 +108,8 @@ defmodule Floki.Mixfile do
       }
     }
   end
+
+  # Specifies which paths to compile per environment.
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end
